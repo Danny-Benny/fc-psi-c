@@ -65,7 +65,7 @@ function TeamBadge({
   highlight: boolean;
 }) {
   return (
-    <div className="flex flex-1 flex-col items-center gap-1 text-center">
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-1 text-center">
       {logoUrl ? (
         <Image
           src={logoUrl}
@@ -73,13 +73,13 @@ function TeamBadge({
           width={40}
           height={40}
           unoptimized
-          className="h-10 w-10 rounded-full object-cover ring-1 ring-zinc-200 dark:ring-zinc-700"
+          className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-zinc-200 dark:ring-zinc-700"
         />
       ) : (
-        <div className="h-10 w-10 rounded-full bg-zinc-200 dark:bg-zinc-700" />
+        <div className="h-10 w-10 shrink-0 rounded-full bg-zinc-200 dark:bg-zinc-700" />
       )}
       <span
-        className={`text-sm leading-tight ${
+        className={`w-full truncate text-sm leading-tight ${
           highlight
             ? "font-semibold text-emerald-700 dark:text-emerald-400"
             : "text-zinc-700 dark:text-zinc-300"
@@ -132,7 +132,7 @@ export default async function Home() {
   const hasAbout = Boolean(descriptionText || embedUrl);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
+    <main className="mx-auto min-w-0 max-w-5xl px-4 py-10">
       {/* Header */}
       <header className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
         {team.logoUrl && (
@@ -232,7 +232,7 @@ export default async function Home() {
                   logoUrl={match.home.logoUrl}
                   highlight={match.home.tid === team.tid}
                 />
-                <div className="flex flex-col items-center gap-1 px-2">
+                <div className="flex shrink-0 flex-col items-center gap-1 px-2">
                   {match.isPlayed ? (
                     <span className="text-lg font-bold text-zinc-900 dark:text-zinc-50">
                       {match.homeScore} : {match.awayScore}
@@ -263,8 +263,8 @@ export default async function Home() {
           <h2 className="mb-3 text-lg font-semibold text-zinc-800 dark:text-zinc-200">
             Soupiska ({players.length})
           </h2>
-          <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto rounded-lg shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-800">
+            <table className="w-full min-w-[420px] text-sm">
               <thead className="bg-zinc-100 text-left text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
                 <tr>
                   <th className="px-3 py-2 font-medium" colSpan={2}>
